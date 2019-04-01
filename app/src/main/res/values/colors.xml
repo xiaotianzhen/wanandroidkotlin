@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="bg_main_color">#33aded</color>
+    <color name="bg_dirver">#ececec</color>
+    <color name="bg_light_white">#eeeeee</color>
+    <color name="bg_red">#DC143C</color>
+    <color name="bg_white">#ffffff</color>
+    <color name="bg_black">#000000</color>
+    <color name="bg_page">#eeeeee</color>
+
+
+    <color name="font_stronger">#333333</color>
+    <color name="font_grey">#666666</color>
+    <color name="font_losecoupon">#999999</color>
+    <color name="font_white">#ffffff</color>
+    <color name="font_blue">#33aded</color>
+    <color name="font_yellow">#ff8000</color>
+
+
+</resources>

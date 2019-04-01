@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.yicooll.wanandroidkotlin.ui.activity.MainActivity.Presenter" />
+
+    </data>
+
+    <LinearLayout
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_dirver" />
+
+        <RadioGroup
+            android:background="@color/bg_white"
+            android:id="@+id/rg_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onCheckedChanged="@{presenter::onCheckedChanged}"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RadioButton
+                android:id="@+id/rb_main"
+                style="@style/HomeTabStyle"
+                android:checked="true"
+                android:drawableTop="@drawable/main_tab_home"
+                android:drawablePadding="-3dp"
+                android:text="@string/index" />
+
+            <RadioButton
+                android:id="@+id/rb_center"
+                style="@style/HomeTabStyle"
+                android:drawableTop="@drawable/main_tab_center"
+                android:drawablePadding="1dp"
+                android:text="@string/weiget" />
+
+            <RadioButton
+                android:id="@+id/rb_user"
+                style="@style/HomeTabStyle"
+                android:drawableTop="@drawable/main_tab_user"
+                android:drawablePadding="-3dp"
+                android:text="@string/mine" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</layout>
+

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="presenter"
+            type="com.yicooll.wanandroidkotlin.ui.fragment.MineFragment.Presenter"/>
+    </data>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/bg_light_white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <LinearLayout
+                    android:id="@+id/ll_logged"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_head"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            style="@style/TextStyle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:textColor="@color/font_yellow" />
+
+                        <View
+                            style="@style/VerticalLine"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/font_yellow" />
+
+                        <TextView
+                            android:id="@+id/tv_email"
+                            style="@style/TextStyle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/font_yellow" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:onClick="@{presenter::toLoginClick}"
+                    android:id="@+id/tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="立即登录"
+                    android:textColor="@color/bg_main_color"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/user_icon_31"
+                android:drawablePadding="@dimen/margin_padding_5dp"
+                android:gravity="center"
+                android:text="我的金币"
+                android:textColor="@color/font_stronger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_more" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/include_nomargin_line_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/user_icon_32"
+                android:drawablePadding="@dimen/margin_padding_5dp"
+                android:gravity="center"
+                android:text="我的金币"
+                android:textColor="@color/font_stronger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_more" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/include_nomargin_line_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/user_icon_33"
+                android:drawablePadding="@dimen/margin_padding_5dp"
+                android:gravity="center"
+                android:text="我的金币"
+                android:textColor="@color/font_stronger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_more" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/include_nomargin_line_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/user_icon_34"
+                android:drawablePadding="@dimen/margin_padding_5dp"
+                android:gravity="center"
+                android:text="我的金币"
+                android:textColor="@color/font_stronger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_more" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/include_nomargin_10bg_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/user_icon_35"
+                android:drawablePadding="@dimen/margin_padding_5dp"
+                android:gravity="center"
+                android:text="我的金币"
+                android:textColor="@color/font_stronger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_more" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/include_nomargin_line_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/user_icon_36"
+                android:drawablePadding="@dimen/margin_padding_5dp"
+                android:gravity="center"
+                android:text="我的金币"
+                android:textColor="@color/font_stronger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_more" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_login_out"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/corners_red_shape"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/font_white"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>
+</layout>
