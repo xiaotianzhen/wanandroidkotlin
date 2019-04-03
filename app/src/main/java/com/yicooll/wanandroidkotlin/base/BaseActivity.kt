@@ -23,8 +23,9 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_base)
         var view: View = layoutInflater.inflate(getContentViewLayoutId(), ll_content, false)
         ll_content.addView(view)
+
         initViewAndEvent()
-        ImmersionBar.with(this).statusBarColor(R.color.bg_main_color).init()
+        ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.bg_main_color).init()
     }
 
     protected abstract fun getContentViewLayoutId(): Int
@@ -47,7 +48,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * toast 消息
      */
-    protected fun showToast(msg: String) {
+    protected fun showToast(msg: String?) {
         if (msg != null && !TextUtils.isEmpty(msg)) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }

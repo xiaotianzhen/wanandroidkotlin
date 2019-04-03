@@ -1,6 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-</LinearLayout>
+    <data>
+        <variable
+            name="presenter"
+            type="com.yicooll.wanandroidkotlin.ui.activity.LoginActivity.Presenter"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fafafa"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/margin_padding_10dp"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:textColor="@color/font_stronger"
+                android:textSize="@dimen/font_size_13sp" />
+
+            <EditText
+                android:id="@+id/et_usernmae"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_padding_10dp"
+                android:background="@null"
+                android:hint="@string/et_username_hint"
+                android:lines="1"
+                android:maxLength="20"
+                android:textColor="@color/font_stronger"
+                android:textColorHint="@color/font_stronger"
+                android:textSize="@dimen/font_size_13sp" />
+
+        </LinearLayout>
+
+        <include layout="@layout/include_nomargin_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/bg_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_padding_15dp"
+            android:paddingRight="@dimen/margin_padding_15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textColor="@color/font_stronger"
+                android:textSize="@dimen/font_size_13sp" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_padding_10dp"
+                android:background="@null"
+                android:hint="@string/et_password_hint"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:maxLength="20"
+                android:textColor="@color/font_stronger"
+                android:textColorHint="@color/font_stronger"
+                android:textSize="@dimen/font_size_13sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:onClick="@{presenter::onLoginClick}"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/main_bg_of_gray_shape"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@color/font_white"
+            android:textSize="@dimen/font_size_14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/margin_padding_10dp"
+            android:background="@drawable/main_bg_of_orange_gradient"
+            android:gravity="center"
+            android:text="@string/regitster"
+            android:textColor="@color/font_white"
+            android:textSize="@dimen/font_size_14sp" />
+    </LinearLayout>
+</layout>

@@ -11,6 +11,8 @@
     <color name="bg_white">#ffffff</color>
     <color name="bg_black">#000000</color>
     <color name="bg_page">#eeeeee</color>
+    <color name="bg_grey">#666666</color>
+    <color name="bg_lose_grey">#eeeeee</color>
 
 
     <color name="font_stronger">#333333</color>

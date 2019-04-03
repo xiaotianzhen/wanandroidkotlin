@@ -12,6 +12,8 @@ import android.widget.TextView
 import com.yicooll.wanandroidkotlin.BR
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
+import com.yicooll.wanandroidkotlin.ui.activity.LoginActivity
+import com.yicooll.wanandroidkotlin.util.ToActivityHelper
 
 
 /**
@@ -34,7 +36,7 @@ class MineFragment : BaseFragment() {
    inner class Presenter {
 
         fun toLoginClick(view: View) {
-            showToast("点击了")
+            ToActivityHelper.getInstance()!!.toActivity(activity!!,LoginActivity::class.java)
         }
 
 

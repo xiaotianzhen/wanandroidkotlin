@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.TextView
 import com.yicooll.wanandroidkotlin.BR
@@ -26,14 +25,15 @@ class MainActivity : BaseActivity() {
 
     override fun initViewAndEvent() {
 
-        var bindding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        bindding.setVariable(BR.presenter, Presenter())
-        changeFragment(IndexFragment::class.simpleName)
 
-        var llMenu : LinearLayout ?= getHeadMenu ()
+        var llMenu = getHeadMenu ()
         var view: View = layoutInflater.inflate(R.layout.include_noback_toolbar, llMenu)
         var tvTitle: TextView = view.findViewById<TextView>(R.id.tv_menu_center)
         tvTitle.text = "控件"
+
+        var bindding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        bindding.setVariable(BR.presenter, Presenter())
+        changeFragment(IndexFragment::class.simpleName)
     }
 
 

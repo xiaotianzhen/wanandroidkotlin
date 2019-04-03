@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
+    android:background="@color/bg_red"
     android:orientation="vertical">
 
     <LinearLayout
