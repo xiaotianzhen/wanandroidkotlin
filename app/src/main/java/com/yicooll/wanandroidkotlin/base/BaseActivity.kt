@@ -1,8 +1,6 @@
 package com.yicooll.wanandroidkotlin.base
 
 import android.app.Activity
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils

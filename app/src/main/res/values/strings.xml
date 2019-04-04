@@ -5,7 +5,7 @@
     <string name="mine">我的</string>
     <string name="username">用户名</string>
     <string name="et_username_hint">请输入用户名</string>
-    <string name="password">密\t\t码</string>
+    <string name="password">密\t\t\t码</string>
     <string name="et_password_hint">请输入密码</string>
     <string name="login">登录</string>
     <string name="regitster">注册</string>

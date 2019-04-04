@@ -1,19 +1,17 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import com.yicooll.wanandroidkotlin.BR
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.ui.activity.LoginActivity
+import com.yicooll.wanandroidkotlin.util.ImageUtils
 import com.yicooll.wanandroidkotlin.util.ToActivityHelper
+import com.yicooll.wanandroidkotlin.util.UserHelper
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 
 /**
@@ -23,26 +21,43 @@ import com.yicooll.wanandroidkotlin.util.ToActivityHelper
 class MineFragment : BaseFragment() {
 
 
-    override fun initViewAndEvent() {
+    override fun onResume() {
+        super.onResume()
+        displayView()
+    }
 
+    override fun initViewAndEvent() {
+        ImageUtils.loadImageBlur(iv_bg, url)
+        ImageUtils.loadImageCircle(iv_head, url)
+
+        tv_login.setOnClickListener {
+            ToActivityHelper.getInstance()!!.toActivity(activity!!, LoginActivity::class.java)
+        }
+
+        tv_login_out.setOnClickListener {
+            UserHelper.getInstance()?.loginOut(activity!!.applicationContext)
+            displayView()
+        }
+    }
+
+    fun displayView() {
+        if (UserHelper.getInstance()?.isLogin(activity!!.applicationContext)!!) {
+            tv_login_out.visibility = View.VISIBLE
+            tv_login.visibility = View.GONE
+            iv_head.visibility = View.VISIBLE
+        } else {
+            tv_login_out.visibility = View.GONE
+            tv_login.visibility = View.VISIBLE
+            iv_head.visibility = View.GONE
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,R.layout.fragment_mine, container, false)
-        binding.setVariable(BR.presenter,Presenter())
-        return binding.root
-    }
 
-   inner class Presenter {
-
-        fun toLoginClick(view: View) {
-            ToActivityHelper.getInstance()!!.toActivity(activity!!,LoginActivity::class.java)
-        }
-
-
+        return inflater.inflate(R.layout.fragment_mine, container, false)
     }
 
     companion object {
-        val headUrl: String = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542110989472&di=e206dfdad3d1197025ddc03bca0b013c&imgtype=0&src=http%3A%2F%2Fwww.pig66.com%2Fuploadfile%2F2017%2F1209%2F20171209121323978.png"
+        val url: String = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542110989472&di=e206dfdad3d1197025ddc03bca0b013c&imgtype=0&src=http%3A%2F%2Fwww.pig66.com%2Fuploadfile%2F2017%2F1209%2F20171209121323978.png"
     }
 }

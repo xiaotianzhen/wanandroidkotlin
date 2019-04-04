@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-        <variable
-            name="presenter"
-            type="com.yicooll.wanandroidkotlin.ui.fragment.MineFragment.Presenter"/>
-    </data>
-
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -78,7 +70,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:onClick="@{presenter::toLoginClick}"
                     android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,7 +122,7 @@
                 android:drawableLeft="@mipmap/user_icon_32"
                 android:drawablePadding="@dimen/margin_padding_5dp"
                 android:gravity="center"
-                android:text="我的金币"
+                android:text="我的收藏"
                 android:textColor="@color/font_stronger" />
 
             <ImageView
@@ -159,7 +150,7 @@
                 android:drawableLeft="@mipmap/user_icon_33"
                 android:drawablePadding="@dimen/margin_padding_5dp"
                 android:gravity="center"
-                android:text="我的金币"
+                android:text="我的订单"
                 android:textColor="@color/font_stronger" />
 
             <ImageView
@@ -187,7 +178,7 @@
                 android:drawableLeft="@mipmap/user_icon_34"
                 android:drawablePadding="@dimen/margin_padding_5dp"
                 android:gravity="center"
-                android:text="我的金币"
+                android:text="历史记录"
                 android:textColor="@color/font_stronger" />
 
             <ImageView
@@ -215,7 +206,7 @@
                 android:drawableLeft="@mipmap/user_icon_35"
                 android:drawablePadding="@dimen/margin_padding_5dp"
                 android:gravity="center"
-                android:text="我的金币"
+                android:text="检查更新"
                 android:textColor="@color/font_stronger" />
 
             <ImageView
@@ -243,7 +234,7 @@
                 android:drawableLeft="@mipmap/user_icon_36"
                 android:drawablePadding="@dimen/margin_padding_5dp"
                 android:gravity="center"
-                android:text="我的金币"
+                android:text="关于我们"
                 android:textColor="@color/font_stronger" />
 
             <ImageView
@@ -269,4 +260,4 @@
 
     </LinearLayout>
 </ScrollView>
-</layout>
+

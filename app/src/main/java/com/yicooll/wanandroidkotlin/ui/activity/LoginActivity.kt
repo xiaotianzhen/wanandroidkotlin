@@ -3,14 +3,13 @@ package com.yicooll.wanandroidkotlin.ui.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.yicooll.wanandroidkotlin.BR
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
-import com.yicooll.wanandroidkotlin.databinding.ActivityLoginBinding
+import com.yicooll.wanandroidkotlin.entity.ModelLogin
+import com.yicooll.wanandroidkotlin.util.PreferenceHelper
 import com.yicooll.wanandroidkotlin.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -24,37 +23,51 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initViewAndEvent() {
-        var bindding = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
-        bindding.setVariable(BR.presenter, Presenter())
-
-
 
         vm = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        vm!!.init(et_usernmae.text.toString(), et_password.text.toString())
+        //vm!!.init(et_usernmae.text.toString(), et_password.text.toString())
 
-        vm!!.getLodinData()?.observe(this, Observer {
-            it.let {
-
-                it1 ->loginSuccess(it1)
-
-            }
-        })
 
         var llMenu: LinearLayout? = getHeadMenu()
         var view: View = layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         var tvTitle: TextView = view.findViewById<TextView>(R.id.tv_menu_center)
         tvTitle.text = "登录"
-    }
-
-    fun loginSuccess(it1:String?){
-          showToast(it1)
-    }
 
 
-    inner class Presenter {
-
-        fun onLoginClick(view: View) {
-              showToast("登录")
+        tv_login.setOnClickListener {
+            invalidateInfo()
         }
+    }
+
+    fun loginSuccess(it1: ModelLogin?) {
+        showToast("登录成功")
+        PreferenceHelper.putBoolean(this, "isLogin", true)
+        finish()
+    }
+
+
+    private fun invalidateInfo() {
+        if (et_usernmae.text.toString().trim() == "") {
+            showToast("请输入用户名")
+            return
+        }
+        if (et_password.text.toString().trim() == "") {
+            showToast("请输入密码")
+            return
+        }
+        if (et_password.text.toString().length < 6) {
+            showToast("请输入6位以上密码")
+            return
+        }
+        vm?.doLogin(et_usernmae.text.toString().trim(), et_password.text.toString().trim())
+
+        vm!!.getLodinData()?.observe(this, Observer {
+            it.let {
+
+                it1 ->
+                loginSuccess(it1)
+
+            }
+        })
     }
 }
