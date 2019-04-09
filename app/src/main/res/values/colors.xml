@@ -13,7 +13,7 @@
     <color name="bg_page">#eeeeee</color>
     <color name="bg_grey">#666666</color>
     <color name="bg_lose_grey">#eeeeee</color>
-
+    <color name="bg_yellow">#ff8000</color>
 
     <color name="font_stronger">#333333</color>
     <color name="font_grey">#666666</color>

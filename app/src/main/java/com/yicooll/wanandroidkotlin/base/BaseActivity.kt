@@ -22,13 +22,15 @@ abstract class BaseActivity : AppCompatActivity() {
         var view: View = layoutInflater.inflate(getContentViewLayoutId(), ll_content, false)
         ll_content.addView(view)
 
-        initViewAndEvent()
+        initView()
+        initEvent()
         ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.bg_main_color).init()
     }
 
     protected abstract fun getContentViewLayoutId(): Int
 
-    protected abstract fun initViewAndEvent()
+    protected abstract fun initView()
+    protected abstract fun initEvent()
 
 
     /**

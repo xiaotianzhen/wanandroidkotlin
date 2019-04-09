@@ -16,28 +16,31 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
 
-
     private var vm: LoginViewModel? = null
+
+
     override fun getContentViewLayoutId(): Int {
         return R.layout.activity_login
     }
 
-    override fun initViewAndEvent() {
 
-        vm = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        //vm!!.init(et_usernmae.text.toString(), et_password.text.toString())
-
-
+    override fun initView() {
         var llMenu: LinearLayout? = getHeadMenu()
         var view: View = layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         var tvTitle: TextView = view.findViewById<TextView>(R.id.tv_menu_center)
         tvTitle.text = "登录"
 
+    }
+
+    override fun initEvent() {
+        vm = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        //vm!!.init(et_usernmae.text.toString(), et_password.text.toString())
 
         tv_login.setOnClickListener {
             invalidateInfo()
         }
     }
+
 
     fun loginSuccess(it1: ModelLogin?) {
         showToast("登录成功")

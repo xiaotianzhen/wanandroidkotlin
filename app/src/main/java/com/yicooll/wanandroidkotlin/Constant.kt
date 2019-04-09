@@ -11,6 +11,7 @@ class Constant {
 
     companion object {
         const val appName = "wanandroid"
-        const val BANNER_TURN: Long = 5000
+        const val BANNER_TURN: Long = 3000
+        const val ONE_PAGE_COUNT=10
     }
 }

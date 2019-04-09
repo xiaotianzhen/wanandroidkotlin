@@ -11,19 +11,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*
 
 class MainActivity : BaseActivity() {
-
-
-    private val mFragmentList = java.util.ArrayList<Fragment>()
-    override fun getContentViewLayoutId(): Int {
-        return R.layout.activity_main
-    }
-
-    override fun initViewAndEvent() {
-
+    override fun initView() {
 
         var llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_noback_toolbar, llMenu)
         tv_menu_center.text = "首页"
+    }
+
+    override fun initEvent() {
 
         changeFragment(IndexFragment::class.simpleName)
         rg_main.setOnCheckedChangeListener { radioGroup, checkId ->
@@ -44,6 +39,12 @@ class MainActivity : BaseActivity() {
             }
 
         }
+    }
+
+
+    private val mFragmentList = java.util.ArrayList<Fragment>()
+    override fun getContentViewLayoutId(): Int {
+        return R.layout.activity_main
     }
 
 

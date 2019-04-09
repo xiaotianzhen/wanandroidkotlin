@@ -26,10 +26,13 @@ class MineFragment : BaseFragment() {
         displayView()
     }
 
-    override fun initViewAndEvent() {
+
+    override fun initView() {
         ImageUtils.loadImageBlur(iv_bg, url)
         ImageUtils.loadImageCircle(iv_head, url)
+    }
 
+    override fun initEvent() {
         tv_login.setOnClickListener {
             ToActivityHelper.getInstance()!!.toActivity(activity!!, LoginActivity::class.java)
         }
@@ -39,6 +42,7 @@ class MineFragment : BaseFragment() {
             displayView()
         }
     }
+
 
     fun displayView() {
         if (UserHelper.getInstance()?.isLogin(activity!!.applicationContext)!!) {

@@ -12,13 +12,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import com.bigkoo.convenientbanner.ConvenientBanner
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator
 import com.bigkoo.convenientbanner.holder.Holder
 import com.bumptech.glide.Glide
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yicooll.wanandroidkotlin.Constant
+import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.ModelIndexArtical
 import com.yicooll.wanandroidkotlin.entity.ModelIndexBanner
@@ -27,9 +26,7 @@ import com.yicooll.wanandroidkotlin.ui.adapter.IndexArticalAdapter
 import com.yicooll.wanandroidkotlin.ui.adapter.IndexBlockAdapter
 import com.yicooll.wanandroidkotlin.viewModel.IndexViewModel
 import kotlinx.android.synthetic.main.fragment_index.*
-import android.R
-import android.os.Handler
-import android.os.Message
+import kotlinx.android.synthetic.main.index_header.*
 
 
 /**
@@ -38,21 +35,47 @@ import android.os.Message
  */
 class IndexFragment : BaseFragment() {
 
+
     private var vm: IndexViewModel? = null
     private var mImageLoadHoder: BannerHolder? = null
     private var bannerList = ArrayList<ModelIndexBanner.DataBean>()
     private val templateList = ArrayList<Template>()
     private val articalList = ArrayList<ModelIndexArtical.DataBean.DatasBean>()
     private val LOADERMORE: Int = 1000
-    private val LOADERMORE_DELAYER: Long = 800
     private var pageNum = 1
     private var articalAdapter: IndexArticalAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(com.yicooll.wanandroidkotlin.R.layout.fragment_index, container, false)
+        return inflater.inflate(R.layout.fragment_index, container, false)
     }
 
-    override fun initViewAndEvent() {
+    override fun initView() {
+        articalAdapter = IndexArticalAdapter(com.yicooll.wanandroidkotlin.R.layout.wan_item_of_article_list, articalList)
+        rv_list.adapter = articalAdapter
+        rv_list.layoutManager = LinearLayoutManager(activity)
+        articalAdapter?.setOnLoadMoreListener({
+            vm?.getIndexArtical(++pageNum)
+        }, rv_list)
+
+        val view = layoutInflater.inflate(R.layout.index_header, null, false)
+        articalAdapter!!.addHeaderView(view)
+
+        var banner = view.findViewById<View>(R.id.cb_banner) as ConvenientBanner<*>
+        banner.setPages(CBViewHolderCreator<BannerHolder> {
+            if (mImageLoadHoder == null) {
+                mImageLoadHoder = BannerHolder()
+            }
+            return@CBViewHolderCreator mImageLoadHoder
+        }, bannerList as List<Nothing>).setPageIndicator(intArrayOf(com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_normal, com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_selected))
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                .startTurning(Constant.BANNER_TURN)
+
+        var rvBlock = view.findViewById<RecyclerView>(R.id.rv_block)
+        rvBlock.adapter = IndexBlockAdapter(activity!!, getIndexFuntionBlock())
+        rvBlock.layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL, false)
+    }
+
+    override fun initEvent() {
         vm = ViewModelProviders.of(this).get(IndexViewModel::class.java)
         vm?.getBannerLiveData()?.observe(this, Observer {
 
@@ -71,55 +94,16 @@ class IndexFragment : BaseFragment() {
             }
             it?.let { it1 ->
                 articalList.addAll(it1.data.datas)
+                articalAdapter?.notifyDataSetChanged()
             }
-            // articalAdapter?.notifyDataSetChanged()
-
-            rv_list.postDelayed({
-                if (articalList.size < 20) {
-                    articalAdapter?.loadMoreEnd()
-                } else {
-                    articalAdapter?.addData(articalList)
-                    articalAdapter?.loadMoreComplete()
-                }
-            }, LOADERMORE_DELAYER)
-
-
+            if (articalList.size < 20) {
+                articalAdapter?.loadMoreEnd()
+            } else {
+                articalAdapter?.loadMoreComplete()
+            }
         })
 
-        cb_banner.setPages(CBViewHolderCreator<BannerHolder> {
-            if (mImageLoadHoder == null) {
-                mImageLoadHoder = BannerHolder()
-            }
-            return@CBViewHolderCreator mImageLoadHoder
-        }, bannerList as List<Nothing>).setPageIndicator(intArrayOf(com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_normal, com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_selected))
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .startTurning(Constant.BANNER_TURN)
-
-        rv_block.adapter = IndexBlockAdapter(activity!!.applicationContext, getIndexFuntionBlock())
-        rv_block.layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL, false)
-
-        articalAdapter = IndexArticalAdapter(com.yicooll.wanandroidkotlin.R.layout.wan_item_of_article_list, articalList)
-        rv_list.adapter = articalAdapter
-        rv_list.layoutManager = LinearLayoutManager(activity)
-        articalAdapter?.setOnLoadMoreListener({
-            // mHandler.sendEmptyMessageDelayed(LOADERMORE, LOADERMORE_DELAYER)
-            vm?.getIndexArtical(++pageNum)
-        }, rv_list)
-
-        //articalAdapter?.disableLoadMoreIfNotFullPage()
-
-
     }
-
-    private var mHandler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            if (msg.what == LOADERMORE) {
-                vm?.getIndexArtical(++pageNum)
-            }
-        }
-    }
-
 
     inner class BannerHolder : Holder<ModelIndexBanner.DataBean> {
 

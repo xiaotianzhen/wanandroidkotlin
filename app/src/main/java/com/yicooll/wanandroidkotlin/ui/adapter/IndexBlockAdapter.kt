@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.ui.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.entity.Template
+import com.yicooll.wanandroidkotlin.ui.activity.ArticalSystemActivity
+import com.yicooll.wanandroidkotlin.util.ToActivityHelper
 import kotlinx.android.synthetic.main.wan_item_of_block_list.view.*
 
 class IndexBlockAdapter(context: Context, data: List<Template>) : RecyclerView.Adapter<IndexBlockAdapter.ViewHolder>() {
@@ -42,5 +45,15 @@ class IndexBlockAdapter(context: Context, data: List<Template>) : RecyclerView.A
             itemView.tv_text.text = template.templateName
         }
 
+        init {
+            itemView.ll_index_block.setOnClickListener {
+                when (adapterPosition) {
+                    0 -> ToActivityHelper.getInstance()?.toActivity(context as Activity, ArticalSystemActivity::class.java)
+                    1 -> ToActivityHelper.getInstance()?.toActivity(context as Activity, ArticalSystemActivity::class.java)
+                    2 -> ToActivityHelper.getInstance()?.toActivity(context as Activity, ArticalSystemActivity::class.java)
+                    3 -> ToActivityHelper.getInstance()?.toActivity(context as Activity, ArticalSystemActivity::class.java)
+                }
+            }
+        }
     }
 }

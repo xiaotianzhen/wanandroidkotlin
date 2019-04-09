@@ -16,11 +16,12 @@ import com.yicooll.wanandroidkotlin.base.BaseFragment
  *
  */
 class WeigetFragment : BaseFragment() {
-
-
-    override fun initViewAndEvent() {
-
+    override fun initView() {
     }
+
+    override fun initEvent() {
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_weiget,container,false)

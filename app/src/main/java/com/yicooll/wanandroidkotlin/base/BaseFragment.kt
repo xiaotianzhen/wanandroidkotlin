@@ -15,10 +15,13 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewAndEvent()
+        initView()
+        initEvent()
     }
 
-    protected abstract fun initViewAndEvent()
+    protected abstract fun initView()
+    protected abstract fun initEvent()
+
     /**
      * toast 消息
      */
