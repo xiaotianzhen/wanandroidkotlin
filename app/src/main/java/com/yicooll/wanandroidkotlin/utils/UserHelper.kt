@@ -1,4 +1,4 @@
-package com.yicooll.wanandroidkotlin.util
+package com.yicooll.wanandroidkotlin.utils
 
 import android.content.Context
 

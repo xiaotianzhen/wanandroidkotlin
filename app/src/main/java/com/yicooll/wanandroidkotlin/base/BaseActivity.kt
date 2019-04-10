@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.yicooll.wanandroidkotlin.R
-import com.yicooll.wanandroidkotlin.util.Density
+import com.yicooll.wanandroidkotlin.utils.Density
 import kotlinx.android.synthetic.main.activity_base.*
 
 abstract class BaseActivity : AppCompatActivity() {

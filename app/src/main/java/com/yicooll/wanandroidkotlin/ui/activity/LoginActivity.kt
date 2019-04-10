@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelLogin
-import com.yicooll.wanandroidkotlin.util.PreferenceHelper
+import com.yicooll.wanandroidkotlin.utils.PreferenceHelper
 import com.yicooll.wanandroidkotlin.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 

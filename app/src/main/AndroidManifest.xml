@@ -11,7 +11,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.ArticalSystemListActivity"></activity>
+        <activity android:name=".ui.activity.OfficialCodeActivity"></activity>
+        <activity android:name=".ui.activity.ProjectActivity" />
+        <activity android:name=".ui.activity.ArticalSystemListActivity" />
         <activity android:name=".ui.activity.ArticalSystemActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>

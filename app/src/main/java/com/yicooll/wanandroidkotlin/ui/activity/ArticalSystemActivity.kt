@@ -4,14 +4,12 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelSystemCatogry
 import com.yicooll.wanandroidkotlin.ui.adapter.ArticalSystemAdapter
 import com.yicooll.wanandroidkotlin.ui.adapter.ArticalSystemChildrenAdapter
-import com.yicooll.wanandroidkotlin.util.ToActivityHelper
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.ArticalSystemViewModel
 import kotlinx.android.synthetic.main.activity_artical_system.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*

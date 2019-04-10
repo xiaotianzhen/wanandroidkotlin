@@ -44,6 +44,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="tabTextStyle">
+        <item name="android:textSize">@dimen/font_size_14sp</item>
+        <item name="android:textColor">@color/font_grey</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

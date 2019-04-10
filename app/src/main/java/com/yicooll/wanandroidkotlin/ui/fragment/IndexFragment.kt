@@ -95,11 +95,11 @@ class IndexFragment : BaseFragment() {
             it?.let { it1 ->
                 articalList.addAll(it1.data.datas)
                 articalAdapter?.notifyDataSetChanged()
-            }
-            if (articalList.size < 20) {
-                articalAdapter?.loadMoreEnd()
-            } else {
-                articalAdapter?.loadMoreComplete()
+                if (it.data.datas.size< 20) {
+                    articalAdapter?.loadMoreEnd()
+                } else {
+                    articalAdapter?.loadMoreComplete()
+                }
             }
         })
 

@@ -49,13 +49,12 @@ class ArticalSystemListActivity : BaseActivity() {
             }
             it?.let { it1 ->
                 articalList.addAll(it1.data.datas)
-            }
-            adapter?.notifyDataSetChanged()
-
-            if(articalList.size<Constant.ONE_PAGE_COUNT){
-                adapter?.loadMoreEnd()
-            }else{
-                adapter?.loadMoreComplete()
+                adapter?.notifyDataSetChanged()
+                if(it1.data.datas.size <Constant.ONE_PAGE_COUNT){
+                    adapter?.loadMoreEnd()
+                }else{
+                    adapter?.loadMoreComplete()
+                }
             }
         })
 

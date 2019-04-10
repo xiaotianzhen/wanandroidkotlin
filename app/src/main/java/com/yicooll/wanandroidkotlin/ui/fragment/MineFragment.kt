@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.ui.activity.LoginActivity
-import com.yicooll.wanandroidkotlin.util.ImageUtils
-import com.yicooll.wanandroidkotlin.util.ToActivityHelper
-import com.yicooll.wanandroidkotlin.util.UserHelper
+import com.yicooll.wanandroidkotlin.utils.ImageUtils
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
+import com.yicooll.wanandroidkotlin.utils.UserHelper
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 
