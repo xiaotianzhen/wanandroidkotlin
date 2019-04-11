@@ -7,10 +7,10 @@ import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.entity.ModelArticalSystemList
 import com.yicooll.wanandroidkotlin.entity.ModelIndexArtical
 
-class ArticalSystemListAdapter(layoutResId: Int, data: List<ModelArticalSystemList.DataBean.DatasBean>) : BaseQuickAdapter<ModelArticalSystemList.DataBean.DatasBean, BaseViewHolder>(layoutResId, data) {
+class ArticalSystemListAdapter(layoutResId: Int, data: List<ModelArticalSystemList.Data.Data>) : BaseQuickAdapter<ModelArticalSystemList.Data.Data, BaseViewHolder>(layoutResId, data) {
 
 
-    override fun convert(helper: BaseViewHolder?, item: ModelArticalSystemList.DataBean.DatasBean?) {
+    override fun convert(helper: BaseViewHolder?, item: ModelArticalSystemList.Data.Data?) {
         helper?.setText(R.id.tv_author,item?.author)
         helper?.setText(R.id.tv_title,item?.title)
         helper?.setText(R.id.tv_type1,item?.chapterName)

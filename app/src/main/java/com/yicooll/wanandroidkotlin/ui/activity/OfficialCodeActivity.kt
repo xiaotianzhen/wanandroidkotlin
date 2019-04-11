@@ -16,7 +16,7 @@ class OfficialCodeActivity : BaseActivity() {
 
 
     private var vm: OfficialCodeViewModel? = null
-    private var officialCodeCategory = ArrayList<ModelOfficialCodeCategory.DataBean>()
+    private var officialCodeCategory = ArrayList<ModelOfficialCodeCategory.Data>()
     private var fragmentList = ArrayList<Fragment>()
     private var adapter: FragmentPagerAdapter? = null
 

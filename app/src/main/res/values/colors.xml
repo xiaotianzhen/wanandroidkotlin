@@ -14,6 +14,8 @@
     <color name="bg_grey">#666666</color>
     <color name="bg_lose_grey">#eeeeee</color>
     <color name="bg_yellow">#ff8000</color>
+    <color name="bg_lose_yellow">#FCDCB9</color>
+    <color name="bg_lose_blue">#C3F7FD</color>
     <color name="bg_transparent">#00000000</color>
 
     <color name="font_stronger">#333333</color>
@@ -22,6 +24,5 @@
     <color name="font_white">#ffffff</color>
     <color name="font_blue">#33aded</color>
     <color name="font_yellow">#ff8000</color>
-
 
 </resources>

@@ -1,28 +1,30 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yicooll.wanandroidkotlin.Constant
 
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
+import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeList
+import com.yicooll.wanandroidkotlin.ui.adapter.OfficialCodeAdapter
+import com.yicooll.wanandroidkotlin.viewModel.OfficialCodeViewModel
+import kotlinx.android.synthetic.main.fragment_official_code_list.*
 
 class OfficialCodeListFragment : BaseFragment() {
 
 
-    companion object {
 
-        fun newInstance(typeId: Int): OfficialCodeListFragment {
-            val args = Bundle()
-            args.putInt("typeId", typeId)
-            val fragment = OfficialCodeListFragment()
-            fragment.setArguments(args)
-            return fragment
-        }
-    }
-
+    private var vm:OfficialCodeViewModel?=null
+    private var pageNum=1
+    private var adapter: OfficialCodeAdapter?=null
+    private var data=ArrayList<ModelOfficialCodeList.Data.DataX>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,9 +33,49 @@ class OfficialCodeListFragment : BaseFragment() {
     }
 
     override fun initView() {
+        adapter=OfficialCodeAdapter(R.layout.adapter_offical_code,data)
+        rv_offical_code.adapter=adapter
+        rv_offical_code.layoutManager=LinearLayoutManager(activity)
     }
 
     override fun initEvent() {
+        vm=ViewModelProviders.of(this).get(OfficialCodeViewModel::class.java)
+        if(arguments!=null){
+            vm?.getOfficialCodeList(arguments!!.getInt("typeId"),pageNum)
+        }
+        vm?.getOfficialCodeListLiveData()?.observe(this, Observer {
+            if(pageNum==1){
+                data.clear()
+            }
+
+             it?.let {
+                 it1->
+                 data.addAll(it1.data.datas)
+                 adapter?.notifyDataSetChanged()
+                 if(it1.data.datas.size<Constant.ONE_PAGE_COUNT){
+                     adapter?.loadMoreEnd()
+                 }else{
+                     adapter?.loadMoreComplete()
+                 }
+             }
+        })
+
+        adapter?.setOnLoadMoreListener({
+            vm?.getOfficialCodeList(arguments!!.getInt("typeId"),++pageNum)
+        },rv_offical_code)
     }
 
+
+
+
+    companion object {
+
+        fun newInstance(typeId: Int): OfficialCodeListFragment {
+            val args = Bundle()
+            args.putInt("typeId", typeId)
+            val fragment = OfficialCodeListFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 }

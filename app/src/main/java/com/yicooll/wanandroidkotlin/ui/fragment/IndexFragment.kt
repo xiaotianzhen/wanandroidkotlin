@@ -38,9 +38,9 @@ class IndexFragment : BaseFragment() {
 
     private var vm: IndexViewModel? = null
     private var mImageLoadHoder: BannerHolder? = null
-    private var bannerList = ArrayList<ModelIndexBanner.DataBean>()
+    private var bannerList = ArrayList<ModelIndexBanner.Data>()
     private val templateList = ArrayList<Template>()
-    private val articalList = ArrayList<ModelIndexArtical.DataBean.DatasBean>()
+    private val articalList = ArrayList<ModelIndexArtical.Data.Data>()
     private val LOADERMORE: Int = 1000
     private var pageNum = 1
     private var articalAdapter: IndexArticalAdapter? = null
@@ -105,10 +105,10 @@ class IndexFragment : BaseFragment() {
 
     }
 
-    inner class BannerHolder : Holder<ModelIndexBanner.DataBean> {
+    inner class BannerHolder : Holder<ModelIndexBanner.Data> {
 
         private var imageView: ImageView? = null
-        override fun UpdateUI(context: Context?, position: Int, data: ModelIndexBanner.DataBean?) {
+        override fun UpdateUI(context: Context?, position: Int, data: ModelIndexBanner.Data?) {
             Glide.with(context!!).load(data!!.imagePath).into(imageView!!)
         }
 

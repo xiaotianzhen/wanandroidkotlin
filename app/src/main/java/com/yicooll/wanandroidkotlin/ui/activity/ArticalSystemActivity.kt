@@ -18,8 +18,8 @@ class ArticalSystemActivity : BaseActivity() {
 
 
     private var vm: ArticalSystemViewModel? = null
-    private var categoryData = ArrayList<ModelSystemCatogry.DataBean>()
-    private var categoryChildData = ArrayList<ModelSystemCatogry.DataBean.ChildrenBean>()
+    private var categoryData = ArrayList<ModelSystemCatogry.Data>()
+    private var categoryChildData = ArrayList<ModelSystemCatogry.Data.Children>()
     private var articalSystemAdapter: ArticalSystemAdapter? = null
     private var articalSystemChildrenAdapter: ArticalSystemChildrenAdapter? = null
 

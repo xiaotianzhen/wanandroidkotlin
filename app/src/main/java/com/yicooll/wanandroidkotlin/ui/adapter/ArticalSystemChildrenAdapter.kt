@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.entity.ModelSystemCatogry
 
-class ArticalSystemChildrenAdapter(layoutResId: Int, data: ArrayList<ModelSystemCatogry.DataBean.ChildrenBean>) : BaseQuickAdapter<ModelSystemCatogry.DataBean.ChildrenBean, BaseViewHolder>(layoutResId, data) {
+class ArticalSystemChildrenAdapter(layoutResId: Int, data: ArrayList<ModelSystemCatogry.Data.Children>) : BaseQuickAdapter<ModelSystemCatogry.Data.Children, BaseViewHolder>(layoutResId, data) {
 
     private var currentPosition = -1
     private var onItemClickListener: OnItemClickListener? = null
@@ -15,7 +15,7 @@ class ArticalSystemChildrenAdapter(layoutResId: Int, data: ArrayList<ModelSystem
         this.onItemClickListener = onItemClickListener
     }
 
-    override fun convert(helper: BaseViewHolder?, item: ModelSystemCatogry.DataBean.ChildrenBean?) {
+    override fun convert(helper: BaseViewHolder?, item:ModelSystemCatogry.Data.Children?) {
         if (helper?.adapterPosition == currentPosition) {
             helper?.getView<TextView>(R.id.tv_category)?.setBackgroundResource(R.color.bg_yellow)
         } else {

@@ -6,10 +6,10 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.entity.ModelIndexArtical
 
-class IndexArticalAdapter(layoutResId: Int, data: List<ModelIndexArtical.DataBean.DatasBean>) : BaseQuickAdapter<ModelIndexArtical.DataBean.DatasBean, BaseViewHolder>(layoutResId, data) {
+class IndexArticalAdapter(layoutResId: Int, data: List<ModelIndexArtical.Data.Data>) : BaseQuickAdapter<ModelIndexArtical.Data.Data, BaseViewHolder>(layoutResId, data) {
 
 
-    override fun convert(helper: BaseViewHolder?, item: ModelIndexArtical.DataBean.DatasBean?) {
+    override fun convert(helper: BaseViewHolder?, item: ModelIndexArtical.Data.Data?) {
         helper?.setText(R.id.tv_author,item?.author)
         helper?.setText(R.id.tv_title,item?.title)
         helper?.setText(R.id.tv_type1,item?.chapterName)

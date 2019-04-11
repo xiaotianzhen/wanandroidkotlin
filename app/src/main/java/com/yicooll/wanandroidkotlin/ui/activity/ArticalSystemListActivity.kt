@@ -16,7 +16,7 @@ class ArticalSystemListActivity : BaseActivity() {
 
 
     private var adapter: ArticalSystemListAdapter? = null
-    private val articalList = ArrayList<ModelArticalSystemList.DataBean.DatasBean>()
+    private val articalList = ArrayList<ModelArticalSystemList.Data.Data>()
     private var vm: ArticalSystemListViewModel? = null
     private var pageNum=0
 

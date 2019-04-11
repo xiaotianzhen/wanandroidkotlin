@@ -15,7 +15,7 @@ class ProjectActivity : BaseActivity() {
 
     private var vm: ProjectViewModel? = null
     private var pageNum = 1
-    private var projectList = ArrayList<ModelProjectList.DataBean.DatasBean>()
+    private var projectList = ArrayList<ModelProjectList.Data.Data>()
     private var projectAdapter: ProjectAdapter? = null
     private var typeId = 0
 
@@ -46,7 +46,6 @@ class ProjectActivity : BaseActivity() {
             }
             setProjectList()
         })
-
 
 
         projectAdapter?.setOnLoadMoreListener({
