@@ -26,6 +26,8 @@ class RetrofitUtil {
             Log.d("RetrofitUtil", "message:$message")
         })
         private val mOkHttpClient = OkHttpClient.Builder().addInterceptor(mHttpLoggingInterceptor)
+                .addInterceptor(ReceivedCookiesInterceptor())
+                .addInterceptor(AddCookiesInterceptor())
                 .connectTimeout(8 * 1000, TimeUnit.SECONDS)
                 .cache(Cache(cacheFile, cacheSize))
                 .build()!!

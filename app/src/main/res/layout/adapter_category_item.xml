@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_category"
+        android:id="@+id/tv_category_name"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:paddingLeft="@dimen/margin_padding_15dp"

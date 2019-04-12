@@ -17,6 +17,11 @@ class SearchViewModel(application: Application):AndroidViewModel(application) {
         searchLiveData=repository?.getSearchLiveData()
     }
 
+
+    fun getSearchLiveData(): MutableLiveData<ModelSearch>? {
+        return searchLiveData
+    }
+
     fun getSearchData(keyword: String, pageNum: Int){
         repository?.getSearchData(keyword,pageNum)
     }

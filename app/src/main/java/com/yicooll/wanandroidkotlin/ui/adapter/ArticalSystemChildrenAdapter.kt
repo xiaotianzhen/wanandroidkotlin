@@ -17,13 +17,13 @@ class ArticalSystemChildrenAdapter(layoutResId: Int, data: ArrayList<ModelSystem
 
     override fun convert(helper: BaseViewHolder?, item:ModelSystemCatogry.Data.Children?) {
         if (helper?.adapterPosition == currentPosition) {
-            helper?.getView<TextView>(R.id.tv_category)?.setBackgroundResource(R.color.bg_yellow)
+            helper?.getView<TextView>(R.id.tv_category_name)?.setBackgroundResource(R.color.bg_yellow)
         } else {
-            helper?.getView<TextView>(R.id.tv_category)?.setBackgroundResource(R.color.bg_white)
+            helper?.getView<TextView>(R.id.tv_category_name)?.setBackgroundResource(R.color.bg_white)
         }
-        helper?.getView<TextView>(R.id.tv_category)?.text = item?.name
+        helper?.getView<TextView>(R.id.tv_category_name)?.text = item?.name
 
-        helper?.getView<TextView>(R.id.tv_category)?.setOnClickListener {
+        helper?.getView<TextView>(R.id.tv_category_name)?.setOnClickListener {
             currentPosition = helper.adapterPosition
             if (onItemClickListener != null) {
                 onItemClickListener?.onItemClick(currentPosition)

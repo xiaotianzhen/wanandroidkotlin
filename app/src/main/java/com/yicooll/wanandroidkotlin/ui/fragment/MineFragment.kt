@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
+import com.yicooll.wanandroidkotlin.ui.activity.CollectActivity
 import com.yicooll.wanandroidkotlin.ui.activity.LoginActivity
 import com.yicooll.wanandroidkotlin.utils.ImageUtils
 import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
@@ -40,6 +41,9 @@ class MineFragment : BaseFragment() {
         tv_login_out.setOnClickListener {
             UserHelper.getInstance()?.loginOut(activity!!.applicationContext)
             displayView()
+        }
+        rl_collect.setOnClickListener {
+            ToActivityHelper.getInstance()!!.toActivity(activity!!, CollectActivity::class.java)
         }
     }
 

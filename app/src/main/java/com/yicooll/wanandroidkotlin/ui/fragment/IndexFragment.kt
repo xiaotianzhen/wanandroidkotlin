@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -22,8 +23,10 @@ import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.ModelIndexArtical
 import com.yicooll.wanandroidkotlin.entity.ModelIndexBanner
 import com.yicooll.wanandroidkotlin.entity.Template
+import com.yicooll.wanandroidkotlin.ui.activity.MainWebActivity
 import com.yicooll.wanandroidkotlin.ui.adapter.IndexArticalAdapter
 import com.yicooll.wanandroidkotlin.ui.adapter.IndexBlockAdapter
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.IndexViewModel
 import kotlinx.android.synthetic.main.fragment_index.*
 import kotlinx.android.synthetic.main.index_header.*
@@ -44,6 +47,7 @@ class IndexFragment : BaseFragment() {
     private val LOADERMORE: Int = 1000
     private var pageNum = 1
     private var articalAdapter: IndexArticalAdapter? = null
+    private  var banner:ConvenientBanner<*>?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_index, container, false)
@@ -59,9 +63,8 @@ class IndexFragment : BaseFragment() {
 
         val view = layoutInflater.inflate(R.layout.index_header, null, false)
         articalAdapter!!.addHeaderView(view)
-
-        var banner = view.findViewById<View>(R.id.cb_banner) as ConvenientBanner<*>
-        banner.setPages(CBViewHolderCreator<BannerHolder> {
+        banner = view.findViewById<ConvenientBanner<*>>(R.id.cb_banner)
+        banner!!.setPages(CBViewHolderCreator<BannerHolder> {
             if (mImageLoadHoder == null) {
                 mImageLoadHoder = BannerHolder()
             }
@@ -83,7 +86,7 @@ class IndexFragment : BaseFragment() {
             if (it != null) {
                 bannerList.addAll(it.data)
             }
-            cb_banner.notifyDataSetChanged()
+            banner?.notifyDataSetChanged()
 
 
         })
@@ -102,6 +105,15 @@ class IndexFragment : BaseFragment() {
                 }
             }
         })
+
+        banner?.setOnItemClickListener {
+
+            val bundle=Bundle()
+            bundle.putString("url", bannerList[it].url)
+            bundle.putString("title", bannerList[it].title)
+            ToActivityHelper.getInstance()?.toActivity(activity as Activity,MainWebActivity::class.java,bundle)
+
+        }
 
     }
 

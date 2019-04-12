@@ -33,11 +33,11 @@ class ArticalSystemActivity : BaseActivity() {
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         tv_menu_center.text = "体系"
 
-        articalSystemAdapter = ArticalSystemAdapter(R.layout.adapter_system_artical, categoryData)
+        articalSystemAdapter = ArticalSystemAdapter(R.layout.adapter_category_item, categoryData)
         rv_p_category.layoutManager = LinearLayoutManager(this)
         rv_p_category.adapter = articalSystemAdapter
 
-        articalSystemChildrenAdapter = ArticalSystemChildrenAdapter(R.layout.adapter_system_artical, categoryChildData)
+        articalSystemChildrenAdapter = ArticalSystemChildrenAdapter(R.layout.adapter_category_item, categoryChildData)
         rv_c_category.layoutManager = LinearLayoutManager(this)
         rv_c_category.adapter = articalSystemChildrenAdapter
 

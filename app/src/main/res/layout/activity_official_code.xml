@@ -24,6 +24,7 @@
             app:tabRippleColor="@color/bg_transparent"
             app:tabSelectedTextColor="@color/font_blue"
             app:tabTextAppearance="@style/tabTextStyle" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"

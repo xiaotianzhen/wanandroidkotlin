@@ -25,6 +25,9 @@ class UserHelper {
 
     fun loginOut(context: Context) {
         PreferenceHelper.putBoolean(context, "isLogin", false)
+        val cookies = HashSet<String>()
+        cookies.clear()
+        PreferenceHelper.putStringSet(context, "cookie",cookies)
     }
 
 }
