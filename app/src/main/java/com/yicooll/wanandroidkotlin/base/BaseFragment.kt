@@ -25,7 +25,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * toast 消息
      */
-    public fun showToast(msg: String) {
+    protected fun showToast(msg: String) {
         if (msg != null && !TextUtils.isEmpty(msg)) {
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }

@@ -14,10 +14,7 @@
         <activity android:name=".ui.activity.AboutUsActivity"></activity>
         <activity android:name=".ui.activity.MainWebActivity" />
         <activity android:name=".ui.activity.CollectActivity" />
-        <activity
-            android:name=".ui.activity.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.OfficialCodeActivity" />
         <activity android:name=".ui.activity.ProjectActivity" />
         <activity android:name=".ui.activity.ArticalSystemListActivity" />

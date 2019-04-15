@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">玩安卓卡特林</string>
+    <string name="app_name">卡特林</string>
     <string name="index">首页</string>
     <string name="weiget">控件</string>
     <string name="mine">我的</string>
@@ -9,9 +9,7 @@
     <string name="et_password_hint">请输入密码</string>
     <string name="login">登录</string>
     <string name="regitster">注册</string>
+    <string name="about_us">\t\t\t此app为kotlin开发的android项目，使用了玩安卓的api（网址www.wanandroid.com），界面设计和图标，参考了玩安卓网中的项目。在此，感谢感谢wanandroid网站的支持。该项目采用了mvvm的架构，rxjava+retrofit的网络请求框架等，如有疑问，请联系作者。邮箱：459909255@qq.com</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_search">SearchActivity</string>
 
 </resources>

@@ -58,7 +58,7 @@ abstract class BaseActivity : AppCompatActivity() {
      *
      * 导航返回onClick属性
      */
-    protected fun back(view: View) {
+    fun back(view: View) {
         setResult(Activity.RESULT_CANCELED)
         finish()
     }

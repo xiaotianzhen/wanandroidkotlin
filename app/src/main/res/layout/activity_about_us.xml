@@ -7,15 +7,13 @@
     android:orientation="vertical"
     tools:context=".ui.activity.AboutUsActivity">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/margin_padding_15dp"
         android:paddingRight="@dimen/margin_padding_15dp"
-        android:text="       此app为kotlin开发的android项目，使用了玩安卓app的api（网址www.wanandroid.com），界面设计和图标，参考了玩安卓网中的项目。在此，感谢感谢wanandroid网站的支持。该项目采用了mvvm的架构，rxjava+retrofit的网络请求框架等，如有疑问，请联系作者。邮箱：459909255@qq.com"
+        android:text="@string/about_us"
         android:textColor="@color/font_grey"
         android:textSize="@dimen/font_size_14sp" />
-
 
 </LinearLayout>
