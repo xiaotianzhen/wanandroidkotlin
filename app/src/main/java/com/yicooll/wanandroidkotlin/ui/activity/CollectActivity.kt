@@ -3,12 +3,14 @@ package com.yicooll.wanandroidkotlin.ui.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelCollect
 import com.yicooll.wanandroidkotlin.ui.adapter.CollectAdapter
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.CollectViewModel
 import kotlinx.android.synthetic.main.activity_collect.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*
@@ -32,9 +34,7 @@ class CollectActivity : BaseActivity() {
         adapter = CollectAdapter(R.layout.adapter_project_list, collectData)
         rv_collect.adapter = adapter
         rv_collect.layoutManager = LinearLayoutManager(this)
-        adapter?.setOnLoadMoreListener({
-            vm?.getCollectList(++pageNum)
-        }, rv_collect)
+
     }
 
     override fun initEvent() {
@@ -55,5 +55,18 @@ class CollectActivity : BaseActivity() {
                 }
             }
         })
+
+        adapter?.setOnLoadMoreListener({
+            vm?.getCollectList(++pageNum)
+        }, rv_collect)
+
+        adapter?.setOnItemClickListener { adapter, view, position ->
+
+            val bundle= Bundle()
+            bundle.putString("url", collectData[position].link)
+            bundle.putString("title", collectData[position].title)
+            ToActivityHelper.getInstance()?.toActivity(this,MainWebActivity::class.java,bundle)
+
+        }
     }
 }

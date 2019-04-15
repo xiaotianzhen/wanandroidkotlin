@@ -2,6 +2,7 @@ package com.yicooll.wanandroidkotlin.ui.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import com.yicooll.wanandroidkotlin.Constant
@@ -9,6 +10,7 @@ import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelSearch
 import com.yicooll.wanandroidkotlin.ui.adapter.SearchAdapter
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.SearchViewModel
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -60,6 +62,14 @@ class SearchActivity : BaseActivity() {
                 vm?.getSearchData(edt_search.text.toString(), ++pageNum)
             }
         }, rv_search)
+
+        adapter?.setOnItemClickListener { adapter, view, position ->
+
+            val bundle= Bundle()
+            bundle.putString("url", searchData[position].link)
+            bundle.putString("title", searchData[position].title)
+            ToActivityHelper.getInstance()?.toActivity(this,MainWebActivity::class.java,bundle)
+        }
 
         ll_back.setOnClickListener {
             finish()

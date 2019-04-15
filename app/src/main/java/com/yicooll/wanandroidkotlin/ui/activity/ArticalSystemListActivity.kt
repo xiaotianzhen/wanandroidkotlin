@@ -1,13 +1,16 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelArticalSystemList
 import com.yicooll.wanandroidkotlin.ui.adapter.ArticalSystemListAdapter
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.ArticalSystemListViewModel
 import kotlinx.android.synthetic.main.activity_artical_system_list.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*
@@ -62,6 +65,15 @@ class ArticalSystemListActivity : BaseActivity() {
         adapter?.setOnLoadMoreListener({
             vm?.getArticalSystemList(intent.getIntExtra("cid",0),++pageNum)
         },rv_artical_system)
+
+        adapter?.setOnItemClickListener { adapter, view, position ->
+
+            val bundle= Bundle()
+            bundle.putString("url", articalList[position].link)
+            bundle.putString("title", articalList[position].title)
+            ToActivityHelper.getInstance()?.toActivity(this@ArticalSystemListActivity,MainWebActivity::class.java,bundle)
+
+        }
 
     }
 }

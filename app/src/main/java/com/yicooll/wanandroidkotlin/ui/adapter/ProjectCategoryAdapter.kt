@@ -11,7 +11,7 @@ import com.yicooll.wanandroidkotlin.entity.ModelProjectCategory
 class ProjectCategoryAdapter(layoutId: Int, datas: List<ModelProjectCategory.Data>) : BaseQuickAdapter<ModelProjectCategory.Data, BaseViewHolder>(layoutId, datas) {
 
 
-    private var currentPosition = -1
+    private var currentPosition = 0
     private var listener: OnCustomerItemClickListener? = null
 
     fun setListener(listener: OnCustomerItemClickListener) {
@@ -29,14 +29,20 @@ class ProjectCategoryAdapter(layoutId: Int, datas: List<ModelProjectCategory.Dat
         helper?.getView<TextView>(R.id.tv_category_name)?.setOnClickListener {
             currentPosition = helper?.adapterPosition
             if (listener != null) {
-                listener!!.onItemClick(it, data[currentPosition].id)
+                listener!!.onItemClick(it,helper?.adapterPosition)
             }
             notifyDataSetChanged()
         }
     }
 
+    fun itemState(position:Int){
+        currentPosition=position
+        notifyDataSetChanged()
+    }
+
+
     interface OnCustomerItemClickListener {
-        fun onItemClick(view: View, id: Int)
+        fun onItemClick(view: View,position : Int)
     }
 
 }

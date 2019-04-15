@@ -16,7 +16,7 @@ import com.yicooll.wanandroidkotlin.ui.adapter.ProjectCategoryAdapter
 import de.greenrobot.event.EventBus
 
 
-class TypePopupWindow(context: Context, adapter: ProjectCategoryAdapter) {
+class TypePopupWindow(context: Context, adapter: ProjectCategoryAdapter,position:Int) {
 
     init {
         //准备PopupWindow的布局View
@@ -30,14 +30,15 @@ class TypePopupWindow(context: Context, adapter: ProjectCategoryAdapter) {
         var rvCategory = popupView.findViewById<RecyclerView>(R.id.rv_category)
         rvCategory.adapter = adapter
         rvCategory.layoutManager = LinearLayoutManager(context)
+        adapter.itemState(position)
 
         popupView.findViewById<View>(R.id.view).setOnClickListener {
             popupWindow.dismiss()
         }
 
         adapter.setListener(object : ProjectCategoryAdapter.OnCustomerItemClickListener {
-            override fun onItemClick(view: View, id: Int) {
-                EventBus.getDefault().post(Event(EventAction.PROJECT_CATEGORY, id))
+            override fun onItemClick(view: View,position:Int) {
+                EventBus.getDefault().post(Event(EventAction.PROJECT_CATEGORY, position))
                 popupWindow.dismiss()
             }
         })

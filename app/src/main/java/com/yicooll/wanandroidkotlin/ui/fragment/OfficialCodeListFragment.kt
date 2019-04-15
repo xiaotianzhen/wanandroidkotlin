@@ -1,6 +1,7 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -13,7 +14,9 @@ import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeList
+import com.yicooll.wanandroidkotlin.ui.activity.MainWebActivity
 import com.yicooll.wanandroidkotlin.ui.adapter.OfficialCodeAdapter
+import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.OfficialCodeViewModel
 import kotlinx.android.synthetic.main.fragment_official_code_list.*
 
@@ -63,6 +66,13 @@ class OfficialCodeListFragment : BaseFragment() {
         adapter?.setOnLoadMoreListener({
             vm?.getOfficialCodeList(arguments!!.getInt("typeId"),++pageNum)
         },rv_offical_code)
+        adapter?.setOnItemClickListener { adapter, view, position ->
+            val bundle= Bundle()
+            bundle.putString("url", data[position].link)
+            bundle.putString("title", data[position].title)
+            ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java,bundle)
+        }
+
     }
 
 

@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
+import com.yicooll.wanandroidkotlin.ui.activity.AboutUsActivity
 import com.yicooll.wanandroidkotlin.ui.activity.CollectActivity
 import com.yicooll.wanandroidkotlin.ui.activity.LoginActivity
 import com.yicooll.wanandroidkotlin.utils.ImageUtils
@@ -43,7 +45,15 @@ class MineFragment : BaseFragment() {
             displayView()
         }
         rl_collect.setOnClickListener {
-            ToActivityHelper.getInstance()!!.toActivity(activity!!, CollectActivity::class.java)
+            if(UserHelper.getInstance()?.isLogin(activity as Activity)!!){
+                ToActivityHelper.getInstance()!!.toActivity(activity!!, CollectActivity::class.java)
+            }else{
+                ToActivityHelper.getInstance()!!.toActivity(activity!!, LoginActivity::class.java)
+            }
+        }
+
+        rl_about_us.setOnClickListener {
+            ToActivityHelper.getInstance()!!.toActivity(activity!!, AboutUsActivity::class.java)
         }
     }
 

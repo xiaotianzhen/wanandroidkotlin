@@ -222,6 +222,7 @@
         <include layout="@layout/include_nomargin_line_horizontal" />
 
         <RelativeLayout
+            android:id="@+id/rl_about_us"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/bg_white"

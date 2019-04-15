@@ -115,6 +115,16 @@ class IndexFragment : BaseFragment() {
 
         }
 
+        articalAdapter?.setOnItemClickListener { adapter, view, position ->
+
+            val bundle=Bundle()
+            bundle.putString("url", articalList[position].link)
+            bundle.putString("title", articalList[position].title)
+            ToActivityHelper.getInstance()?.toActivity(activity as Activity,MainWebActivity::class.java,bundle)
+
+        }
+
+
     }
 
     inner class BannerHolder : Holder<ModelIndexBanner.Data> {

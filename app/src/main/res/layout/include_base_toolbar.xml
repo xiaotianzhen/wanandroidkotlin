@@ -15,6 +15,9 @@
         android:onClick="back" />
 
     <TextView
+        android:lines="1"
+        android:ellipsize="end"
+        android:maxWidth="100dp"
         android:id="@+id/tv_menu_center"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
