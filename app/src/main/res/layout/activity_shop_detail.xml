@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ShopDetailActivity">
+
+
+    <com.yicooll.wanandroidkotlin.ui.weiget.NoScrollViewpager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_cart"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@color/bg_white"
+            android:paddingTop="4dp">
+
+
+            <ImageView
+                android:id="@+id/iv_cart"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/market_icon_shopping_cart" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                style="@style/TextStyle"
+                android:layout_marginStart="35dp"
+                android:background="@drawable/market_shape_round_red"
+                android:gravity="center"
+                android:minWidth="15dp"
+                android:minHeight="15dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:textColor="@color/font_white"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/rl_cart">
+
+            <TextView
+                android:id="@+id/tv_add_cart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_of_orange_gradient"
+                android:gravity="center"
+                android:text="@string/market_add_to_cart"
+                android:textColor="@color/font_white" />
+
+            <TextView
+                android:id="@+id/tv_buy_now"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_of_red_gradient"
+                android:gravity="center"
+                android:text="@string/market_buy_now"
+                android:textColor="@color/font_white" />
+        </LinearLayout>
+
+        <View style="@style/HorizontalLine" />
+    </RelativeLayout>
+</LinearLayout>

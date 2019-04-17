@@ -24,5 +24,7 @@
     <color name="font_white">#ffffff</color>
     <color name="font_blue">#33aded</color>
     <color name="font_yellow">#ff8000</color>
+    <color name="font_red">#DC143C</color>
+
 
 </resources>

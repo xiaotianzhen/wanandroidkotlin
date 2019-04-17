@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.utils
 
+import android.content.Context
 import java.text.SimpleDateFormat
 
 class Util {
@@ -22,5 +23,14 @@ class Util {
             }
             return ""
         }
+
+        fun getWindowMetrics(mContext: Context): IntArray {
+            val datas = IntArray(2)
+            val dm = mContext.resources.displayMetrics
+            datas[0] = dm.widthPixels
+            datas[1] = dm.heightPixels
+            return datas
+        }
+
     }
 }

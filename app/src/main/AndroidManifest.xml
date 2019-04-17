@@ -11,7 +11,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.AboutUsActivity"></activity>
+        <activity android:name=".ui.activity.ShopDetailActivity"></activity>
+        <activity android:name=".ui.activity.AboutUsActivity" />
         <activity android:name=".ui.activity.MainWebActivity" />
         <activity android:name=".ui.activity.CollectActivity" />
         <activity android:name=".ui.activity.SearchActivity" />

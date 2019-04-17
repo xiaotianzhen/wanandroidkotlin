@@ -49,9 +49,23 @@
         <item name="android:textColor">@color/font_grey</item>
     </style>
 
+    <style name="tabShopDetialTextStyle">
+        <item name="android:textSize">@dimen/font_size_14sp</item>
+        <item name="android:textColor">@color/font_white</item>
+    </style>
+
 
     <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/anim_right_in</item>
         <item name="android:windowExitAnimation">@anim/anim_right_out</item>
     </style>
+
+    <declare-styleable name="SlideLayout">
+        <attr name="percent" format="float" />
+        <attr name="duration" format="integer" />
+        <attr name="default_panel" format="enum">
+            <enum name="front" value="0" />
+            <enum name="behind" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

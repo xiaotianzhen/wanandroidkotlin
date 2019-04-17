@@ -5,6 +5,7 @@ import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AlertDialog
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.*
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
@@ -43,13 +44,13 @@ class MainWebActivity : BaseActivity() {
 
     fun wvSetting() {
 
-        val webSetting=webview.settings
-        webSetting.javaScriptEnabled=true
+        val webSetting = webview.settings
+        webSetting.javaScriptEnabled = true
         //允许js弹框
-        webSetting.javaScriptCanOpenWindowsAutomatically=true
+        webSetting.javaScriptCanOpenWindowsAutomatically = true
 
         //解决高版本webview不能点击
-        webview.webViewClient=object :WebViewClient(){
+        webview.webViewClient = object : WebViewClient() {
 
             @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
@@ -70,7 +71,7 @@ class MainWebActivity : BaseActivity() {
         // 通过设置WebChromeClient对象处理JavaScript的对话框
         //设置响应js 的Alert()函数
 
-        webview.webChromeClient=object : WebChromeClient() {
+        webview.webChromeClient = object : WebChromeClient() {
 
             override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
                 val b = AlertDialog.Builder(this@MainWebActivity)
@@ -84,13 +85,31 @@ class MainWebActivity : BaseActivity() {
 
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                if(newProgress==100){
-                    pgb_webview.visibility= View.GONE
-                }else{
-                    pgb_webview.visibility= View.VISIBLE
+                if (newProgress == 100) {
+                    pgb_webview.visibility = View.GONE
+                } else {
+                    pgb_webview.visibility = View.VISIBLE
                     pgb_webview.progress = newProgress
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (webview != null) {
+            val parent = webview.parent
+            if (parent != null) {
+                (parent as ViewGroup).removeView(webview)
+            }
+            webview.stopLoading()
+            // 退出时调用此方法，移除绑定的服务，否则某些特定系统会报错
+            webview.settings.javaScriptEnabled = false
+            webview.clearHistory()
+            webview.removeAllViews()
+            webview.destroy()
+        }
+
     }
 }

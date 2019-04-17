@@ -145,10 +145,10 @@ class IndexFragment : BaseFragment() {
 
     fun getIndexFuntionBlock(): List<Template> {
         templateList.clear()
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_1, "体系"))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_2, "项目"))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_3, "公众号"))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_4, "搜索"))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_1, "体系",""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_2, "项目",""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_3, "公众号",""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_4, "搜索",""))
         return templateList
     }
 
