@@ -25,6 +25,7 @@ import com.yicooll.wanandroidkotlin.entity.ModelGoodsInfo
 import com.yicooll.wanandroidkotlin.ui.activity.ShopDetailActivity
 import com.yicooll.wanandroidkotlin.ui.adapter.ShopCommentAdapter
 import com.yicooll.wanandroidkotlin.ui.adapter.ShopRecommentAdapter
+import com.yicooll.wanandroidkotlin.ui.weiget.SlideLayout
 import com.yicooll.wanandroidkotlin.viewModel.ShopDetialViewModel
 import kotlinx.android.synthetic.main.fragment_goods_info_main.*
 import kotlinx.android.synthetic.main.market_fragment_goods_comment.*
@@ -109,6 +110,11 @@ class GoodsInfoMainFragment : BaseFragment() {
         ll_comment.setOnClickListener {
             val currentActivity = activity as ShopDetailActivity
             currentActivity.setCurrentPage(2)
+        }
+
+        sv_switch.setOnSlideDetailsListener {
+            val currentActivity = activity as ShopDetailActivity
+            currentActivity?.setViewContent(SlideLayout.Status.OPEN == it)
         }
     }
 

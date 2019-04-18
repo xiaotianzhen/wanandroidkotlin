@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.goodschild.GoodsConfigFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.yicooll.wanandroidkotlin.ui.weiget.HinderRecyclerView
+        android:id="@+id/rv_sku"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

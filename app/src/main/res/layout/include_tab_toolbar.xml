@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="@color/bg_main_color"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:gravity="center_vertical">
 
     <ImageView
@@ -29,6 +31,19 @@
         app:tabRippleColor="@color/bg_transparent"
         app:tabSelectedTextColor="@color/font_white"
         app:tabTextAppearance="@style/tabShopDetialTextStyle" />
+
+    <TextView
+        android:id="@+id/tv_menu_center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:maxWidth="100dp"
+        android:textColor="@color/font_white"
+        android:textSize="@dimen/font_size_18sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_menu_right"
