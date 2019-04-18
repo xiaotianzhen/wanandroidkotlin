@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fafafa"
@@ -72,16 +73,17 @@
     </LinearLayout>
 
 
-    <TextView
+    <com.yicooll.wanandroidkotlin.ui.weiget.ObserverButton
         android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="@dimen/margin_padding_20dp"
-        android:background="@drawable/main_bg_of_gray_shape"
         android:gravity="center"
         android:text="@string/login"
         android:textColor="@color/font_white"
-        android:textSize="@dimen/font_size_14sp" />
+        android:textSize="@dimen/font_size_14sp"
+        app:defaultBgResource="@drawable/main_bg_of_gray_shape"
+        app:pressBgResource="@drawable/main_bg_of_orange_gradient" />
 
     <TextView
         android:layout_width="match_parent"

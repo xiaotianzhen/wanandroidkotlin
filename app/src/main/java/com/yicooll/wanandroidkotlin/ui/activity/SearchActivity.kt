@@ -30,6 +30,8 @@ class SearchActivity : BaseActivity() {
         adapter = SearchAdapter(R.layout.wan_item_of_article_list, searchData)
         rv_search.layoutManager = LinearLayoutManager(this)
         rv_search.adapter = adapter
+
+        obt_search.observer(edt_search)
     }
 
     override fun initEvent() {

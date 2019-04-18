@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.SearchActivity">
 
     <RelativeLayout
@@ -48,22 +49,25 @@
             android:singleLine="true"
             android:textSize="14sp" />
 
-        <Button
+        <com.yicooll.wanandroidkotlin.ui.weiget.ObserverButton
             android:id="@+id/obt_search"
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/corner_gray_shape"
             android:gravity="center"
             android:text="搜索"
             android:textColor="@color/bg_grey"
-            android:textSize="@dimen/font_size_12sp" />
+            android:textSize="@dimen/font_size_12sp"
+            app:defaultBgResource="@drawable/corner_gray_shape"
+            app:defaultTextColor="@color/font_grey"
+            app:pressBgResource="@drawable/main_bg_of_orange_gradient"
+            app:pressTextColor="@color/font_white" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

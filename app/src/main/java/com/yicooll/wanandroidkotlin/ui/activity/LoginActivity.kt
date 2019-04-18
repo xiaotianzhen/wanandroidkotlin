@@ -30,6 +30,8 @@ class LoginActivity : BaseActivity() {
         var tvTitle: TextView = view.findViewById<TextView>(R.id.tv_menu_center)
         tvTitle.text = "登录"
 
+        tv_login.observer(et_usernmae,et_password)
+
     }
 
     override fun initEvent() {
