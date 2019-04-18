@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="@color/bg_white"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".ui.activity.AboutUsActivity">
 
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/margin_padding_15dp"
+        android:paddingTop="@dimen/margin_padding_20dp"
         android:paddingRight="@dimen/margin_padding_15dp"
         android:text="@string/about_us"
         android:textColor="@color/font_grey"
