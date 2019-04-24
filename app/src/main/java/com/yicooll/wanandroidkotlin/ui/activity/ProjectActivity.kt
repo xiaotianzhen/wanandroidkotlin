@@ -1,6 +1,5 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -18,7 +17,6 @@ import com.yicooll.wanandroidkotlin.ui.weiget.TypePopupWindow
 import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.ProjectViewModel
 import de.greenrobot.event.EventBus
-import de.greenrobot.event.Subscribe
 import kotlinx.android.synthetic.main.activity_project.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*
 
@@ -30,7 +28,7 @@ class ProjectActivity : BaseActivity() {
     private var projectAdapter: ProjectAdapter? = null
     private var typeId = 0
     private var categoryList = ArrayList<ModelProjectCategory.Data>()
-    private var selectPosition=0
+    private var selectPosition = 0
 
     override fun getContentViewLayoutId(): Int {
         return R.layout.activity_project
@@ -71,16 +69,16 @@ class ProjectActivity : BaseActivity() {
 
         projectAdapter?.setOnItemClickListener { adapter, view, position ->
 
-            val bundle= Bundle()
+            val bundle = Bundle()
             bundle.putString("url", projectList[position].link)
             bundle.putString("title", projectList[position].title)
-            ToActivityHelper.getInstance()?.toActivity(this,MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(this, MainWebActivity::class.java, bundle)
 
         }
 
         tv_menu_right.setOnClickListener {
 
-            TypePopupWindow(this@ProjectActivity, ProjectCategoryAdapter(R.layout.adapter_category_item, categoryList),selectPosition)
+            TypePopupWindow(this@ProjectActivity, ProjectCategoryAdapter(R.layout.adapter_category_item, categoryList), selectPosition)
         }
     }
 
@@ -101,13 +99,12 @@ class ProjectActivity : BaseActivity() {
         })
     }
 
-
-    @Subscribe
-    fun onEvent(event: Event<Int>) {
+    override
+    fun onEvent(event: Event<Any>) {
         if (event.getAction() == EventAction.PROJECT_CATEGORY) {
             pageNum = 1
-            vm?.getProjectByType(categoryList[event.getData()!!].id, pageNum)
-            selectPosition=event.getData()!!
+            vm?.getProjectByType(categoryList[(event.getData() as Int?)!!].id, pageNum)
+            selectPosition = (event.getData() as Int?)!!
         }
     }
 

@@ -9,7 +9,10 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.yicooll.wanandroidkotlin.R
+import com.yicooll.wanandroidkotlin.entity.Event
 import com.yicooll.wanandroidkotlin.utils.Density
+import de.greenrobot.event.EventBus
+import de.greenrobot.event.Subscribe
 import kotlinx.android.synthetic.main.activity_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -21,7 +24,9 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_base)
         var view: View = layoutInflater.inflate(getContentViewLayoutId(), ll_content, false)
         ll_content.addView(view)
-
+        if (regEvent() && !EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         initView()
         initEvent()
         ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.bg_main_color).init()
@@ -65,7 +70,22 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (regEvent()) {
+            EventBus.getDefault().unregister(this)
+        }
         ImmersionBar.with(this).destroy()
     }
 
+    /**
+     * 需要接收事件 重写该方法 并返回true
+     */
+    private fun regEvent(): Boolean {
+        return false
+    }
+
+
+    @Subscribe
+    open fun onEvent(event: Event<Any>) {
+
+    }
 }
