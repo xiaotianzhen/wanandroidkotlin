@@ -26,7 +26,7 @@ class HinderRecyclerView(context: Context, attrs: AttributeSet) : RecyclerView(c
             MotionEvent.ACTION_MOVE -> {
                 var nowY = event.y
                 var nowX = event.x
-                if (Math.abs(nowY - oldY) > Math.abs(nowX - oldX)) {
+                if (Math.abs(nowY - oldY) >= Math.abs(nowX - oldX)) {
                     //滑动到顶部让父控件重新获得触摸事件
                     if (nowY - oldY > 0 && t == 0) {
                         requestDisallowInterceptTouchEvent(false)
