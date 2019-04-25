@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeCategory
@@ -40,14 +41,21 @@ class OfficialCodeActivity : BaseActivity() {
         vm?.getOfficialCodeCategoryLiveData()?.observe(this, Observer {
 
             it?.let { it1 ->
-                officialCodeCategory.clear()
-                fragmentList.clear()
-                officialCodeCategory.addAll(it1.data)
-                for (index in it1.data.indices) {
-                    val fragment = OfficialCodeListFragment.newInstance(it1.data[index].id)
-                    fragmentList.add(fragment)
+                if(it1.errorCode==0){
+                    officialCodeCategory.clear()
+                    fragmentList.clear()
+                    officialCodeCategory.addAll(it1.data)
+                    for (index in it1.data.indices) {
+                        val fragment = OfficialCodeListFragment.newInstance(it1.data[index].id)
+                        fragmentList.add(fragment)
+                    }
+                    adapter?.notifyDataSetChanged()
+                }else{
+                    showToast(it1.errorMsg)
                 }
-                adapter?.notifyDataSetChanged()
+            }
+            if(it==null){
+                showToast(Constant.NETWORK_ERROR)
             }
         })
 

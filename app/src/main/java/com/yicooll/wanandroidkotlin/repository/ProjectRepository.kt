@@ -46,6 +46,7 @@ class ProjectRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        projectListLiveData.value = null
                     }
 
                 })
@@ -72,6 +73,7 @@ class ProjectRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        projectCategoryLiveData.value = null
                     }
                 })
     }

@@ -44,7 +44,7 @@ class IndexRepository {
                     }
 
                     override fun onError(e: Throwable?) {
-
+                        indexArticalLiveData.value=null
                     }
                 })
 
@@ -77,6 +77,7 @@ class IndexRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        indexBannerLiveData.value=null
                     }
 
                 })

@@ -44,6 +44,7 @@ class ArticalSystemRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        catogryLiveData.value=null
                     }
                 })
     }

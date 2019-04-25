@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -29,7 +30,6 @@ import com.yicooll.wanandroidkotlin.ui.adapter.IndexBlockAdapter
 import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.IndexViewModel
 import kotlinx.android.synthetic.main.fragment_index.*
-import kotlinx.android.synthetic.main.index_header.*
 
 
 /**
@@ -47,7 +47,7 @@ class IndexFragment : BaseFragment() {
     private val LOADERMORE: Int = 1000
     private var pageNum = 1
     private var articalAdapter: IndexArticalAdapter? = null
-    private  var banner:ConvenientBanner<*>?=null
+    private var banner: ConvenientBanner<*>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_index, container, false)
@@ -78,15 +78,40 @@ class IndexFragment : BaseFragment() {
         rvBlock.layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL, false)
     }
 
+    private val handler = Handler {
+
+        vm?.getIndexBanner()
+        pageNum = 1
+        vm?.getIndexArtical(pageNum)
+        srv_layout.isRefreshing = false
+        return@Handler true
+    }
+
     override fun initEvent() {
+
+        srv_layout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
+        srv_layout.setOnRefreshListener {
+            handler.sendEmptyMessageDelayed(1000, 800)
+        }
         vm = ViewModelProviders.of(this).get(IndexViewModel::class.java)
         vm?.getBannerLiveData()?.observe(this, Observer {
 
             bannerList.clear()
-            if (it != null) {
-                bannerList.addAll(it.data)
+            it?.let { it1 ->
+                if (it1.errorCode == 0) {
+                    bannerList.addAll(it.data)
+                    banner?.notifyDataSetChanged()
+                } else {
+                    showToast(it1.errorMsg)
+                }
+
             }
-            banner?.notifyDataSetChanged()
+            if (it == null) {
+                showToast(Constant.NETWORK_ERROR)
+            }
 
 
         })
@@ -98,7 +123,7 @@ class IndexFragment : BaseFragment() {
             it?.let { it1 ->
                 articalList.addAll(it1.data.datas)
                 articalAdapter?.notifyDataSetChanged()
-                if (it.data.datas.size< 20) {
+                if (it.data.datas.size < 20) {
                     articalAdapter?.loadMoreEnd()
                 } else {
                     articalAdapter?.loadMoreComplete()
@@ -108,19 +133,19 @@ class IndexFragment : BaseFragment() {
 
         banner?.setOnItemClickListener {
 
-            val bundle=Bundle()
+            val bundle = Bundle()
             bundle.putString("url", bannerList[it].url)
             bundle.putString("title", bannerList[it].title)
-            ToActivityHelper.getInstance()?.toActivity(activity as Activity,MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java, bundle)
 
         }
 
         articalAdapter?.setOnItemClickListener { adapter, view, position ->
 
-            val bundle=Bundle()
+            val bundle = Bundle()
             bundle.putString("url", articalList[position].link)
             bundle.putString("title", articalList[position].title)
-            ToActivityHelper.getInstance()?.toActivity(activity as Activity,MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java, bundle)
 
         }
 
@@ -145,10 +170,10 @@ class IndexFragment : BaseFragment() {
 
     fun getIndexFuntionBlock(): List<Template> {
         templateList.clear()
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_1, "体系",""))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_2, "项目",""))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_3, "公众号",""))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_4, "搜索",""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_1, "体系", ""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_2, "项目", ""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_3, "公众号", ""))
+        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_4, "搜索", ""))
         return templateList
     }
 

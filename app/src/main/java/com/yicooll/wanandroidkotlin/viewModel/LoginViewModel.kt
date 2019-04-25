@@ -9,15 +9,8 @@ import com.yicooll.wanandroidkotlin.repository.LoginRepository
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: LoginRepository? = null
-    private var data: MutableLiveData<ModelLogin>? = null
-
-    /*fun init(username: String,password: String){
-        repository = LoginRepository(username,password)
-        data = repository?.getLoginData()
-    }*/
 
     fun doLogin(username: String, password: String) {
-        //repository?.doLogin(username, password)
         repository = LoginRepository(username,password)
     }
 

@@ -51,13 +51,20 @@ class ArticalSystemListActivity : BaseActivity() {
                 articalList.clear()
             }
             it?.let { it1 ->
-                articalList.addAll(it1.data.datas)
-                adapter?.notifyDataSetChanged()
-                if(it1.data.datas.size <Constant.ONE_PAGE_COUNT){
-                    adapter?.loadMoreEnd()
+                if(it1.errorCode==0){
+                    articalList.addAll(it1.data.datas)
+                    adapter?.notifyDataSetChanged()
+                    if(it1.data.datas.size <Constant.ONE_PAGE_COUNT){
+                        adapter?.loadMoreEnd()
+                    }else{
+                        adapter?.loadMoreComplete()
+                    }
                 }else{
-                    adapter?.loadMoreComplete()
+                    showToast(it1.errorMsg)
                 }
+            }
+            if(it==null){
+                showToast(Constant.NETWORK_ERROR)
             }
         })
 

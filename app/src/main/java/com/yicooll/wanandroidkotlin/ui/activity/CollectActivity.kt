@@ -44,15 +44,22 @@ class CollectActivity : BaseActivity() {
             if (pageNum == 0)
                 collectData.clear()
             it?.let { it1 ->
-                if (it1.data?.datas != null) {
-                    collectData.addAll(it1.data.datas)
+                if(it1.errorCode==0){
+                    if (it1.data?.datas != null) {
+                        collectData.addAll(it1.data.datas)
 
-                    if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
-                        adapter?.loadMoreEnd()
-                    } else {
-                        adapter?.loadMoreComplete()
+                        if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
+                            adapter?.loadMoreEnd()
+                        } else {
+                            adapter?.loadMoreComplete()
+                        }
                     }
+                }else{
+                    showToast(it1.errorMsg)
                 }
+            }
+            if(it==null){
+                showToast(Constant.NETWORK_ERROR)
             }
         })
 

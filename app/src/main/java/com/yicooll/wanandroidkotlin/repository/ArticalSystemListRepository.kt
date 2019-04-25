@@ -43,6 +43,7 @@ class ArticalSystemListRepository(cid: Int,pageNum:Int) {
                     }
 
                     override fun onError(e: Throwable?) {
+                        articalSystemListLiveData.value = null
                     }
                 })
     }

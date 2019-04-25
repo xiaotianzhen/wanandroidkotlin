@@ -30,7 +30,7 @@ class LoginActivity : BaseActivity() {
         var tvTitle: TextView = view.findViewById<TextView>(R.id.tv_menu_center)
         tvTitle.text = "登录"
 
-        tv_login.observer(et_usernmae,et_password)
+        tv_login.observer(et_usernmae, et_password)
 
     }
 
@@ -67,11 +67,16 @@ class LoginActivity : BaseActivity() {
         vm?.doLogin(et_usernmae.text.toString().trim(), et_password.text.toString().trim())
 
         vm!!.getLodinData()?.observe(this, Observer {
-            it.let {
+            it?.let { it1 ->
+                if (it1.errorCode == 0) {
+                    loginSuccess(it1)
+                } else {
+                    showToast(it1.errorMsg)
+                }
 
-                it1 ->
-                loginSuccess(it1)
-
+            }
+            if (it == null) {
+                showToast("网络异常")
             }
         })
     }

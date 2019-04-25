@@ -42,6 +42,7 @@ class OfficialCodeRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        officialCodeCategoryLiveData.value=null
                     }
                 })
 
@@ -68,6 +69,7 @@ class OfficialCodeRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        officialCodeListLiveData.value=null
                     }
                 })
     }

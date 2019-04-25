@@ -38,6 +38,7 @@ class SearchRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        searchLiveData.value = null
                     }
                 })
     }

@@ -43,6 +43,7 @@ class LoginRepository(username: String, password: String) {
                     }
 
                     override fun onError(e: Throwable?) {
+                        liveLoginData.value=null
                     }
 
                 })

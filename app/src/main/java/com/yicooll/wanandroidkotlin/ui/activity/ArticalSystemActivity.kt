@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelSystemCatogry
@@ -50,8 +51,15 @@ class ArticalSystemActivity : BaseActivity() {
             it?.let {
 
                 it1 ->
-                categoryData.addAll(it1.data)
+                if (it1.errorCode == 0) {
+                    categoryData.addAll(it1.data)
+                } else {
+                    showToast(it1.errorMsg)
+                }
 
+            }
+            if (it == null) {
+                showToast(Constant.NETWORK_ERROR)
             }
             articalSystemAdapter?.notifyDataSetChanged()
         })

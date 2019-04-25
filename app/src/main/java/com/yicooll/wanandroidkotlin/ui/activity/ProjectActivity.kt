@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.EventAction
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
@@ -57,9 +58,16 @@ class ProjectActivity : BaseActivity() {
         vm?.getProjectCategoryLiveData()?.observe(this, Observer {
             categoryList.clear()
             it?.let { it1 ->
-                categoryList.addAll(it1.data)
-                typeId = it1.data[0].id
-                vm?.getProjectByType(typeId, pageNum)
+                if (it1.errorCode == 0) {
+                    categoryList.addAll(it1.data)
+                    typeId = it1.data[0].id
+                    vm?.getProjectByType(typeId, pageNum)
+                } else {
+                    showToast(it1.errorMsg)
+                }
+            }
+            if (it == null) {
+                showToast(Constant.NETWORK_ERROR)
             }
             setProjectList()
         })
@@ -88,13 +96,20 @@ class ProjectActivity : BaseActivity() {
                 projectList.clear()
             }
             it?.let { it1 ->
-                projectList.addAll(it1.data.datas)
-                projectAdapter?.notifyDataSetChanged()
-                if (it1.data.datas.size < 15) {
-                    projectAdapter?.loadMoreEnd()
+                if (it1.errorCode == 0) {
+                    projectList.addAll(it1.data.datas)
+                    projectAdapter?.notifyDataSetChanged()
+                    if (it1.data.datas.size < 15) {
+                        projectAdapter?.loadMoreEnd()
+                    } else {
+                        projectAdapter?.loadMoreComplete()
+                    }
                 } else {
-                    projectAdapter?.loadMoreComplete()
+                    showToast(it1.errorMsg)
                 }
+            }
+            if (it == null) {
+                showToast("网络异常")
             }
         })
     }

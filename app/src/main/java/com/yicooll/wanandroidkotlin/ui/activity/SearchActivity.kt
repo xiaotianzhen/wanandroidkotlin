@@ -50,13 +50,20 @@ class SearchActivity : BaseActivity() {
                 searchData.clear()
             }
             it?.let { it1 ->
-                searchData.addAll(it1.data.datas)
-                adapter?.notifyDataSetChanged()
-                if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
-                    adapter?.loadMoreEnd()
+                if (it1.errorCode == 0) {
+                    searchData.addAll(it1.data.datas)
+                    adapter?.notifyDataSetChanged()
+                    if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
+                        adapter?.loadMoreEnd()
+                    } else {
+                        adapter?.loadMoreComplete()
+                    }
                 } else {
-                    adapter?.loadMoreComplete()
+                    showToast(it1.errorMsg)
                 }
+            }
+            if (it == null) {
+                showToast(Constant.NETWORK_ERROR)
             }
         })
         adapter?.setOnLoadMoreListener({
@@ -67,10 +74,10 @@ class SearchActivity : BaseActivity() {
 
         adapter?.setOnItemClickListener { adapter, view, position ->
 
-            val bundle= Bundle()
+            val bundle = Bundle()
             bundle.putString("url", searchData[position].link)
             bundle.putString("title", searchData[position].title)
-            ToActivityHelper.getInstance()?.toActivity(this,MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(this, MainWebActivity::class.java, bundle)
         }
 
         ll_back.setOnClickListener {

@@ -43,6 +43,7 @@ class CollectRepository {
                     }
 
                     override fun onError(e: Throwable?) {
+                        collectLiveData.value = null
                     }
 
                 })
