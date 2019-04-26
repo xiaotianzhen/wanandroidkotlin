@@ -5,6 +5,7 @@ import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -23,11 +24,10 @@ import kotlinx.android.synthetic.main.fragment_official_code_list.*
 class OfficialCodeListFragment : BaseFragment() {
 
 
-
-    private var vm:OfficialCodeViewModel?=null
-    private var pageNum=1
-    private var adapter: OfficialCodeAdapter?=null
-    private var data=ArrayList<ModelOfficialCodeList.Data.DataX>()
+    private var vm: OfficialCodeViewModel? = null
+    private var pageNum = 1
+    private var adapter: OfficialCodeAdapter? = null
+    private var data = ArrayList<ModelOfficialCodeList.Data.DataX>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,46 +36,62 @@ class OfficialCodeListFragment : BaseFragment() {
     }
 
     override fun initView() {
-        adapter=OfficialCodeAdapter(R.layout.adapter_offical_code,data)
-        rv_offical_code.adapter=adapter
-        rv_offical_code.layoutManager=LinearLayoutManager(activity)
+        adapter = OfficialCodeAdapter(R.layout.adapter_offical_code, data)
+        rv_offical_code.adapter = adapter
+        rv_offical_code.layoutManager = LinearLayoutManager(activity)
+        srv_official_code.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
+    }
+
+    private val mHandler = Handler {
+        pageNum = 1
+        if (arguments != null) {
+            vm?.getOfficialCodeList(arguments!!.getInt("typeId"), pageNum)
+        }
+        srv_official_code.isRefreshing = false
+        return@Handler true
     }
 
     override fun initEvent() {
-        vm=ViewModelProviders.of(this).get(OfficialCodeViewModel::class.java)
-        if(arguments!=null){
-            vm?.getOfficialCodeList(arguments!!.getInt("typeId"),pageNum)
+
+        srv_official_code.setOnRefreshListener {
+            mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
+        }
+
+
+        vm = ViewModelProviders.of(this).get(OfficialCodeViewModel::class.java)
+        if (arguments != null) {
+            vm?.getOfficialCodeList(arguments!!.getInt("typeId"), pageNum)
         }
         vm?.getOfficialCodeListLiveData()?.observe(this, Observer {
-            if(pageNum==1){
+            if (pageNum == 1) {
                 data.clear()
             }
 
-             it?.let {
-                 it1->
-                 data.addAll(it1.data.datas)
-                 adapter?.notifyDataSetChanged()
-                 if(it1.data.datas.size<Constant.ONE_PAGE_COUNT){
-                     adapter?.loadMoreEnd()
-                 }else{
-                     adapter?.loadMoreComplete()
-                 }
-             }
+            it?.let { it1 ->
+                data.addAll(it1.data.datas)
+                adapter?.notifyDataSetChanged()
+                if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
+                    adapter?.loadMoreEnd()
+                } else {
+                    adapter?.loadMoreComplete()
+                }
+            }
         })
 
         adapter?.setOnLoadMoreListener({
-            vm?.getOfficialCodeList(arguments!!.getInt("typeId"),++pageNum)
-        },rv_offical_code)
+            vm?.getOfficialCodeList(arguments!!.getInt("typeId"), ++pageNum)
+        }, rv_offical_code)
         adapter?.setOnItemClickListener { adapter, view, position ->
-            val bundle= Bundle()
+            val bundle = Bundle()
             bundle.putString("url", data[position].link)
             bundle.putString("title", data[position].title)
-            ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java, bundle)
         }
 
     }
-
-
 
 
     companion object {

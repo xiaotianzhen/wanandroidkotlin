@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.Template
+import com.yicooll.wanandroidkotlin.ui.activity.CustomerDialogActivity
 import com.yicooll.wanandroidkotlin.ui.activity.ShopDetailActivity
 import com.yicooll.wanandroidkotlin.ui.adapter.WeigetAdapter
 import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
@@ -39,6 +40,7 @@ class WeigetFragment : BaseFragment() {
 
             when (position) {
                 0 -> ToActivityHelper.getInstance()?.toActivity(activity!!, ShopDetailActivity::class.java)
+                1-> ToActivityHelper.getInstance()?.toActivity(activity!!, CustomerDialogActivity::class.java)
             }
 
         }
@@ -48,9 +50,10 @@ class WeigetFragment : BaseFragment() {
     fun getWeigetData(): ArrayList<Template> {
         templateList.clear()
         templateList.add(Template(R.mipmap.main_icon_1, "商城", "电商商品模板，和jd相似"))
-        templateList.add(Template(R.mipmap.main_icon_2, "流式布局", "从左上角位置开始，自动换行"))
-        templateList.add(Template(R.mipmap.main_icon_3, "聊天", "多功能列表适配器"))
-        templateList.add(Template(R.mipmap.main_icon_4, "图片查看器", "图片查看"))
+        templateList.add(Template(R.mipmap.main_icon_2, "dialog", "炫酷好看的dialog"))
+        templateList.add(Template(R.mipmap.main_icon_3, "流式布局", "从左上角位置开始，自动换行"))
+        templateList.add(Template(R.mipmap.main_icon_4, "聊天", "多功能列表适配器"))
+        templateList.add(Template(R.mipmap.main_icon_5, "图片查看器", "图片查看"))
         return templateList
     }
 }

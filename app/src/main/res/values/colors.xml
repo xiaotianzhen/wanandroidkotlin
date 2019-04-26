@@ -26,5 +26,7 @@
     <color name="font_yellow">#ff8000</color>
     <color name="font_red">#DC143C</color>
 
-
+    <color name="circle_color">#6DDD22</color>
+    <color name="rect_color">#448CBB</color>
+    <color name="triangle_color">#EE5C42</color>
 </resources>

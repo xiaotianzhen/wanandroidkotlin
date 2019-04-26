@@ -76,6 +76,11 @@ class IndexFragment : BaseFragment() {
         var rvBlock = view.findViewById<RecyclerView>(R.id.rv_block)
         rvBlock.adapter = IndexBlockAdapter(activity!!, getIndexFuntionBlock())
         rvBlock.layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL, false)
+
+        srv_layout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
     }
 
     private val handler = Handler {
@@ -89,12 +94,8 @@ class IndexFragment : BaseFragment() {
 
     override fun initEvent() {
 
-        srv_layout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light)
         srv_layout.setOnRefreshListener {
-            handler.sendEmptyMessageDelayed(1000, 800)
+            handler.sendEmptyMessageDelayed(Constant.FRESH_CODE,Constant.LOADING_DELAYED)
         }
         vm = ViewModelProviders.of(this).get(IndexViewModel::class.java)
         vm?.getBannerLiveData()?.observe(this, Observer {

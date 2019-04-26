@@ -1,9 +1,9 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
@@ -37,10 +37,25 @@ class ArticalSystemListActivity : BaseActivity() {
         rv_artical_system.adapter = adapter
         rv_artical_system.layoutManager = LinearLayoutManager(this)
 
+        srv_system_list.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
+    }
 
+    private val mHandler=Handler{
+        pageNum=0
+        vm?.getArticalSystemList(intent.getIntExtra("cid",0),pageNum)
+        srv_system_list.isRefreshing=false
+        return@Handler true
     }
 
     override fun initEvent() {
+
+        srv_system_list.setOnRefreshListener {
+            mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE,Constant.LOADING_DELAYED)
+        }
+
         vm = ViewModelProviders.of(this).get(ArticalSystemListViewModel::class.java)
         if(intent!=null)
         vm?.initRequest(intent.getIntExtra("cid",0),pageNum)

@@ -3,6 +3,7 @@ package com.yicooll.wanandroidkotlin.ui.activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.yicooll.wanandroidkotlin.Constant
@@ -45,15 +46,29 @@ class ProjectActivity : BaseActivity() {
         projectAdapter = ProjectAdapter(R.layout.adapter_project_list, projectList)
         rv_project.adapter = projectAdapter
         rv_project.layoutManager = LinearLayoutManager(this)
+
+        srv_project.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
     }
 
-    override fun initEvent() {
+    private val mHandler = Handler {
+        vm?.getProjectCategory()
+        srv_project.isRefreshing = false
+        return@Handler true
+    }
 
+
+    override fun initEvent() {
         if (!EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().register(this)
 
-        vm = ViewModelProviders.of(this).get(ProjectViewModel::class.java)
+        srv_project.setOnRefreshListener {
+            mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
+        }
 
+        vm = ViewModelProviders.of(this).get(ProjectViewModel::class.java)
         vm?.getProjectCategory()
         vm?.getProjectCategoryLiveData()?.observe(this, Observer {
             categoryList.clear()

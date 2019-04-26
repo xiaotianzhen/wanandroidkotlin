@@ -3,6 +3,7 @@ package com.yicooll.wanandroidkotlin.ui.activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
@@ -13,6 +14,7 @@ import com.yicooll.wanandroidkotlin.ui.adapter.ArticalSystemChildrenAdapter
 import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.ArticalSystemViewModel
 import kotlinx.android.synthetic.main.activity_artical_system.*
+import kotlinx.android.synthetic.main.activity_artical_system_list.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*
 
 class ArticalSystemActivity : BaseActivity() {
@@ -42,9 +44,24 @@ class ArticalSystemActivity : BaseActivity() {
         rv_c_category.layoutManager = LinearLayoutManager(this)
         rv_c_category.adapter = articalSystemChildrenAdapter
 
+        srv_system.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
+    }
+
+    private val mHandler = Handler {
+        vm?.getArticalSystemCatogry()
+        srv_system.isRefreshing = false
+        return@Handler true
     }
 
     override fun initEvent() {
+
+        srv_system.setOnRefreshListener {
+            mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
+        }
+
         vm = ViewModelProviders.of(this).get(ArticalSystemViewModel::class.java)
         vm?.systemCatogoryLiveData?.observe(this, Observer {
             categoryData.clear()
